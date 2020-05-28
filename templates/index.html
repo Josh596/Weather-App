@@ -1,0 +1,126 @@
+<html>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<head>
+    <title>Project Weather</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename = 'bootstrap.min.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename = 'all.css') }}">
+    <script src="https://kit.fontawesome.com/17022aade0.js" crossorigin="anonymous"></script>
+    <style>
+      header{
+        background-color:rgb(63, 212, 162);
+        height: 20%;
+      }
+      header h2{
+        margin-left:5%;
+        padding-top:3%;
+        color: white;
+
+      }
+      
+      nav{
+        opacity: .8;
+      }
+      nav a .logo:hover{
+        border: 0px solid #09f071;
+        overflow: hidden;
+        border-radius: 25px;
+        background-color: grey ;
+        padding: 4px;
+      }
+      form input{
+        height:40px;
+        font-size:12px;
+        width:30%;
+           
+      }
+      input:focus{
+        box-shadow: 0 12px 16px 0 rgba(85, 75, 122, 0.24),0 17px 50px 0 rgba(0,0,0,0.19)
+        
+      }
+      button {
+        background-color: blue; /* Blue */
+        border: none;
+        color: white;
+        margin-left: 0px;
+        
+        padding: 12px 32px;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        font-size: 12px;
+        }
+      button:hover {
+        background-color: rgb(27, 27, 138); /* Green */
+        color: white;
+        }
+      .centre{
+        display: block; 
+        text-align: center; 
+        margin-top: 10%;
+        margin-bottom: 5%;
+        
+     
+      }
+
+      .main {
+        box-sizing:border-box;
+        color:rgb(74, 74, 74);
+        display:inline-block;
+        font-family: "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Fira Sans", "Droid Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
+        font-size:20px;
+        font-weight:400;
+        height:25%;
+        line-height:24px;
+        box-shadow: 0 12px 16px 0 rgba(85, 75, 122, 0.24),0 17px 50px 0 rgba(0,0,0,0.19);
+        padding-left: 40px;
+        width:30%;
+        margin-left: 30%;
+        
+        
+      }
+    
+      
+      
+    </style>    
+</head>
+
+
+
+<!-- Image and text -->
+<nav class="navbar navbar-dark bg-dark">
+    <a class="navbar-brand" href="{{ url_for('home')}}">
+      <img src="{{ url_for('static', filename = 'logo.jfif') }}" width="30" height="30" class="d-inline-block align-top" alt="logo">
+      <span class="logo">Josh's Weather App</span>
+    </a>
+  </nav>
+
+  <header>
+    <h2>What's the weather like?</h2>
+  </header>
+
+
+
+<div class="centre">
+<form action="{{ url_for('home') }}" method="POST"  >
+  <input type="text" name="country" placeholder="Country name">
+  <button>Check Weather</button>
+</form>
+</div>
+
+<div class="main">
+{% if work == 'Success' %}
+<strong>
+<p><span class = 'name'>{{ country }}</span></p>
+<p><img src="{{icon}}">{{ description }}</p>
+<p><i class="fas fa-temperature-low fa-2x"></i> {{ temp }}°F </i></p>
+</strong>
+
+{% else %}
+<p>{{ message }}</p>
+{% endif %}
+</div>
+
+
+</html>
